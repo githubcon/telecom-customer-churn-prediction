@@ -10,5 +10,6 @@ shap == 0.51.0
 plotly == 5.22.0
 streamlit == 1.58.0
 streamlit-option-menu == 0.4.0
-
+fastapi ==0.137.2
+#pip install -r requirements.txt
 
