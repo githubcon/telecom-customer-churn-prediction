@@ -1,15 +1,15 @@
-flask == 3.0.3
-joblib == 1.5.3
-scikit-learn == 1.8.0
+flask==3.0.3
+joblib==1.5.3
+scikit-learn==1.8.0
 xgboost>=2.0.0
-numpy ==  1.26.4
-pandas == 2.2.2
-matplotlib == 3.10.9
-seaborn == 0.13.2
-shap == 0.51.0
-plotly == 5.22.0
-streamlit == 1.58.0
-streamlit-option-menu == 0.4.0
-fastapi ==0.137.2
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.10.9
+seaborn==0.13.2
+shap==0.51.0
+plotly==5.22.0
+streamlit==1.58.0
+streamlit-option-menu==0.4.0
+fastapi==0.137.2
 #pip install -r requirements.txt
 
