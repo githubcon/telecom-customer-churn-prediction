@@ -1,4 +1,4 @@
-# 🚀 [telecom-customer-churn-prediction]
+# 🚀 telecom-customer-churn-prediction
 
 ![Python](https://img.shields.io/badge/python-v3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -6,9 +6,9 @@
 
 ## 📋 Description
 
-**Problème résolu :** [L'entreprise de télécommunications(Telco) perd 25% de ses clients chaque année alors que coût d'acquisition d'un nouveau client (CAC) est 5x plus élevé que la rétention.]
+**Problème résolu :** L'entreprise de télécommunications(Telco) perd 25% de ses clients chaque année alors que coût d'acquisition d'un nouveau client (CAC) est 5x plus élevé que la rétention.
 
-**Solution apportée :** [Identifier les clients à risque 3 mois avant leur départ pour lancer des actions de rétention.]
+**Solution apportée :** Identifier les clients à risque 3 mois avant leur départ pour lancer des actions de rétention.
 
 ---
 
@@ -67,8 +67,8 @@ print(f"Probabilité de churn: {prediction:.2%}")
 
 ### 📈 Métriques du Modèle :
 
-- **Accuracy :** 94.2%
-- **F1-Score :** 90.6%
+- **Accuracy :** >= 80.0%
+- **AUC :** 85.0%
 
 ### 💰 Impact Business Estimé :
 
@@ -95,7 +95,7 @@ print(f"Probabilité de churn: {prediction:.2%}")
 
 ## 👤 Contact & Collaboration
 
-**Développé par :** [Habibou]
+**Développé par :** Habibou
 
 **Intéressé par ce projet ?**
 
