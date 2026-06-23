@@ -29,19 +29,24 @@ st.title("📊 Churn Prediction Dashboard (Machine Learning)")
 # =========================
 # LOAD MODELS
 # =========================
-forest = joblib.load("RandomForestClassifier.pkl")
+@st.cache_resource
+def load_models():
+    forest = joblib.load("RandomForestClassifier.pkl")
 
-knn = joblib.load("KNeighborsClassifier.pkl")
+    knn = joblib.load("KNeighborsClassifier.pkl")
 
-with open("XGBClassifier.pkl", "rb") as f:
-    xgb = pickle.load(f)
+    with open("XGBClassifier.pkl", "rb") as f:
+        xgb = pickle.load(f)
 
-with open("LogisticRegression.pkl", "rb") as f:
-    log_reg = pickle.load(f)
+    with open("LogisticRegression.pkl", "rb") as f:
+        log_reg = pickle.load(f)
 
-with open("SVC.pkl", "rb") as f:
-    svc = pickle.load(f)
+    with open("SVC.pkl", "rb") as f:
+        svc = pickle.load(f)
 
+    return forest, knn, xgb, log_reg, svc
+
+forest, knn, xgb, log_reg, svc = load_models()
 
 models = {
     "XGBClassifier": xgb,
@@ -55,13 +60,19 @@ models = {
 # =========================
 # LOAD DATA
 # =========================
-y_test = pd.read_csv("y_test.csv", sep=";", index_col=0).values.ravel()
-x_test = pd.read_csv("x_test.csv", sep=";", index_col=0)
+@st.cache_data
+def load_data():
+    y_test = pd.read_csv("y_test.csv", sep=";", index_col=0).values.ravel()
+    x_test = pd.read_csv("x_test.csv", sep=";", index_col=0)
+    data = pd.read_csv("dataviz.csv", sep=";", index_col=0) #Import dataset for Visualization
+    return y_test, x_test, data
+
+y_test, x_test, data = load_data()
 
 scaler = joblib.load("scaler.pkl")
 x_test_scaled = pd.DataFrame( scaler.transform(x_test), columns=x_test.columns, index=x_test.index)
 
-data = pd.read_csv("dataviz.csv", sep=";", index_col=0) #Import dataset for Visualization
+
 
 
 # =========================
