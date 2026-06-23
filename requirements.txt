@@ -10,6 +10,6 @@ seaborn==0.13.2
 shap==0.47.0
 plotly==5.22.0
 fastapi==0.137.2
-streamlit-option-menu
+#streamlit-option-menu
 #pip install -r requirements.txt
 

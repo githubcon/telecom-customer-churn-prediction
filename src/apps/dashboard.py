@@ -6,18 +6,6 @@ import streamlit as st
 import sys
 import os
 
-st.set_page_config(page_title="Churn Dashboard", layout="wide")
-
-st.write("Python:", sys.version)
-st.write("Files:", os.listdir("."))
-
-try:
-    from streamlit_option_menu import option_menu
-    st.success("streamlit_option_menu OK")
-except Exception as e:
-    st.error(f"IMPORT ERROR: {e}")
-    st.stop()
-
 #from streamlit_option_menu import option_menu
 
 import joblib
@@ -37,7 +25,7 @@ import plotly.express as px
 # =========================
 # CONFIG
 # =========================
-#st.set_page_config(page_title="Churn Dashboard", layout="wide")
+st.set_page_config(page_title="Churn Dashboard", layout="wide")
 
 st.title("📊 Churn Prediction Dashboard (Machine Learning)")
 
@@ -94,13 +82,25 @@ x_test_scaled = pd.DataFrame( scaler.transform(x_test), columns=x_test.columns, 
 # =========================
 # SIDEBAR MENU
 # =========================
-with st.sidebar:
-    selected = option_menu(
-        "📌 Navigation",
-        ["📊 Model Comparison", "📈 Single Model Analysis", "🔮 Prediction", "📉 Data Visualization"],
-        icons=["bar-chart", "activity", "person", "pie-chart"],
-        default_index=0
-    )
+# with st.sidebar:
+#     selected = option_menu(
+#         "📌 Navigation",
+#         ["📊 Model Comparison", "📈 Single Model Analysis", "🔮 Prediction", "📉 Data Visualization"],
+#         icons=["bar-chart", "activity", "person", "pie-chart"],
+#         default_index=0
+#     )
+
+st.sidebar.markdown("## 📌 Navigation")
+
+selected = st.sidebar.radio(
+    "",
+    [
+        "📊 Model Comparison",
+        "📈 Single Model Analysis",
+        "🔮 Prediction",
+        "📉 Data Visualization"
+    ]
+)
 
 
 # =========================
