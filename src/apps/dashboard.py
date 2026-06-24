@@ -7,8 +7,20 @@ import sys
 import os
 
 #from streamlit_option_menu import option_menu
+try:
+    import joblib
+    JOBLIB_AVAILABLE = True
+except ImportError:
+    JOBLIB_AVAILABLE = False
+    st.error("""
+    ⚠️ Critical dependency missing: joblib
 
-import joblib
+    Please install it by adding to requirements.txt:
+    joblib==1.5.3
+    """)
+    st.stop()
+
+#import joblib
 import pickle
 import pandas as pd
 import numpy as np

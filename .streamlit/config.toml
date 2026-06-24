@@ -1,0 +1,20 @@
+[server]
+maxUploadSize = 50           # ✅ Limite à 50MB (bon pour les fichiers de données)
+enableCORS = false           # ✅ Sécurité recommandée pour les apps en production
+enableXsrfProtection = true  # ✅ Protection contre les attaques CSRF
+headless = true             # ✅ Nécessaire pour les environnements sans interface graphique
+port = 8501                 # ✅ Port par défaut de Streamlit
+enableStaticServing = true  # ✅ Optimise le chargement des fichiers statiques
+
+
+[browser]
+gatherUsageStats = false  # ✅ Désactive la collecte de données d'utilisation
+
+[theme]
+base = "light"              # ✅ Thème clair par défaut
+primaryColor = "#1f77b4"    # ✅ Bleu standard (couleur Matplotlib)
+backgroundColor = "#ffffff"  # ✅ Fond blanc
+secondaryBackgroundColor = "#f0f2f6"  # ✅ Gris clair pour les zones secondaires
+textColor = "#262730"       # ✅ Gris foncé pour le texte (bonne lisibilité)
+font = "sans serif"         # ✅ Police sans-serif (standard)
+
