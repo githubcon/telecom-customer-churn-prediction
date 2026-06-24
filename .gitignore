@@ -1,6 +1,45 @@
+# Environnements virtuels
 .idea/
 .venv/
 *venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Build Python
+__pycache__/
+*.pyc
+
+# Poetry
 poetry.lock
 pyproject.toml
-=2.0.0
+
+# Ignore tout
+*
+
+# Fichiers racine nécessaires
+!.gitignore
+!README.md
+!requirements.txt
+!runtime.txt
+
+# Dossiers
+!src/
+!src/apps/
+
+# Application
+!src/apps/dashboard.py
+
+# Modèles
+!src/apps/*.pkl
+
+# Données utilisées par l'app
+!src/apps/*.csv
+
+# Images
+!src/apps/*.png
+
+# Configuration Streamlit
+!.streamlit/
+!.streamlit/config.toml

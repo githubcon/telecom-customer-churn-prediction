@@ -6,21 +6,10 @@ import streamlit as st
 import sys
 import os
 
-#from streamlit_option_menu import option_menu
-try:
-    import joblib
-    JOBLIB_AVAILABLE = True
-except ImportError:
-    JOBLIB_AVAILABLE = False
-    st.error("""
-    ⚠️ Critical dependency missing: joblib
+from streamlit_option_menu import option_menu
 
-    Please install it by adding to requirements.txt:
-    joblib==1.5.3
-    """)
-    st.stop()
-
-#import joblib
+from pathlib import Path
+import joblib
 import pickle
 import pandas as pd
 import numpy as np
@@ -45,19 +34,21 @@ st.title("📊 Churn Prediction Dashboard (Machine Learning)")
 # =========================
 # LOAD MODELS
 # =========================
+BASE_DIR = Path(__file__).resolve().parent
+
 @st.cache_resource
 def load_models():
-    forest = joblib.load("RandomForestClassifier.pkl")
+    forest = joblib.load(BASE_DIR / "RandomForestClassifier.pkl")
 
-    knn = joblib.load("KNeighborsClassifier.pkl")
+    knn = joblib.load(BASE_DIR / "KNeighborsClassifier.pkl")
 
-    with open("XGBClassifier.pkl", "rb") as f:
+    with open(BASE_DIR / "XGBClassifier.pkl", "rb") as f:
         xgb = pickle.load(f)
 
-    with open("LogisticRegression.pkl", "rb") as f:
+    with open(BASE_DIR / "LogisticRegression.pkl", "rb") as f:
         log_reg = pickle.load(f)
 
-    with open("SVC.pkl", "rb") as f:
+    with open(BASE_DIR / "SVC.pkl", "rb") as f:
         svc = pickle.load(f)
 
     return forest, knn, xgb, log_reg, svc
@@ -78,14 +69,19 @@ models = {
 # =========================
 @st.cache_data
 def load_data():
-    y_test = pd.read_csv("y_test.csv", sep=";", index_col=0).values.ravel()
-    x_test = pd.read_csv("x_test.csv", sep=";", index_col=0)
-    data = pd.read_csv("dataviz.csv", sep=";", index_col=0) #Import dataset for Visualization
+    y_test = pd.read_csv(BASE_DIR / "y_test.csv", sep=";", index_col=0).values.ravel()
+    x_test = pd.read_csv(BASE_DIR / "x_test.csv", sep=";", index_col=0)
+    data = pd.read_csv(BASE_DIR / "dataviz.csv", sep=";", index_col=0) #Import dataset for Visualization
     return y_test, x_test, data
 
 y_test, x_test, data = load_data()
 
-scaler = joblib.load("scaler.pkl")
+
+@st.cache_resource
+def load_scaler():
+    return joblib.load(BASE_DIR / "scaler.pkl")
+
+scaler = load_scaler()
 x_test_scaled = pd.DataFrame( scaler.transform(x_test), columns=x_test.columns, index=x_test.index)
 
 
@@ -94,25 +90,14 @@ x_test_scaled = pd.DataFrame( scaler.transform(x_test), columns=x_test.columns, 
 # =========================
 # SIDEBAR MENU
 # =========================
-# with st.sidebar:
-#     selected = option_menu(
-#         "📌 Navigation",
-#         ["📊 Model Comparison", "📈 Single Model Analysis", "🔮 Prediction", "📉 Data Visualization"],
-#         icons=["bar-chart", "activity", "person", "pie-chart"],
-#         default_index=0
-#     )
+with st.sidebar:
+    selected = option_menu(
+        "📌 Navigation",
+        ["📊 Model Comparison", "📈 Single Model Analysis", "🔮 Prediction", "📉 Data Visualization"],
+        icons=["bar-chart", "activity", "person", "pie-chart"],
+        default_index=0
+    )
 
-st.sidebar.markdown("## 📌 Navigation")
-
-selected = st.sidebar.radio(
-    "",
-    [
-        "📊 Model Comparison",
-        "📈 Single Model Analysis",
-        "🔮 Prediction",
-        "📉 Data Visualization"
-    ]
-)
 
 
 # =========================
