@@ -14,7 +14,8 @@
 
 ## 🎬 Démo Live
 
-🔗 **[Voir la démo interactive](votre-lien-demo)**
+🔗 **[Voir la démo interactive](https://telecom-customer-churn-prediction-model.streamlit.app/)**
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://telecom-customer-churn-prediction-model.streamlit.app/)
 
 ![Demo GIF](assets/demo.gif)
 
