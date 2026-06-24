@@ -423,7 +423,7 @@ elif selected == "📉 Data Visualization":
     # Correlation Matrix
     # =====================
     with col2:
-        st.image(
+        st.image(BASE_DIR /
             "correlation_matrix.png",
             caption="Correlation matrix",
             width=400
